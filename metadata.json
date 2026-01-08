@@ -1,0 +1,8 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "name": "Abdelhamid AI Studio Pro",
+  "description": "Plateforme d'intelligence artificielle avancée pour la photographie et la vidéo."
+}
