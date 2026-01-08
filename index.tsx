@@ -2,38 +2,22 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-/**
- * ABDELHAMID AI STUDIO PRO - CORE ENTRY
- * Robust mounting with error handling
- */
+const container = document.getElementById('root');
 
-const mountApp = () => {
-  const container = document.getElementById('root');
-  if (!container) return;
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 
-  try {
-    const root = createRoot(container);
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-
-    // Signale au HTML de retirer le loader
-    if (typeof (window as any).releaseStudio === 'function') {
-      setTimeout(() => (window as any).releaseStudio(), 100);
-    }
-  } catch (err) {
-    console.error("Erreur critique au montage React:", err);
-    if (typeof (window as any).releaseStudio === 'function') {
-      (window as any).releaseStudio();
-    }
+  // Supprimer le loader une fois que React a pris le relais
+  const loader = document.getElementById('initial-loader');
+  if (loader) {
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 500);
+    }, 500);
   }
-};
-
-// Initialisation
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', mountApp);
-} else {
-  mountApp();
 }
