@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABDELHAMID IA | STUDIO ALCHIMIE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                gold: '#D4AF37',
+                purple: '#8B5CF6',
+                violet: '#6D28D9',
+                dark: '#020205'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap');
+      
+      body {
+        background-color: #020205;
+        color: #ffffff;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .font-magic { font-family: 'Cinzel', serif; }
+
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background: #020205;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .logo-seal {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .ring {
+        position: absolute;
+        inset: 0;
+        border: 4px solid #D4AF37;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin 3s linear infinite;
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .alchemy-title {
+        font-family: 'Cinzel', serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #D4AF37;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        text-align: center;
+      }
+
+      .loading-bar {
+        width: 240px;
+        height: 3px;
+        background: rgba(212, 175, 55, 0.1);
+        margin-top: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+      }
+
+      .loading-progress {
+        position: absolute;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        animation: progress 2s infinite ease-in-out;
+      }
+
+      @keyframes progress {
+        0% { left: -100%; }
+        100% { left: 100%; }
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.473.0?deps=react@19.0.0",
+    "@google/genai": "https://esm.sh/@google/genai@1.33.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="initial-loader">
+      <div class="logo-seal">
+        <div class="ring"></div>
+        <span class="font-magic text-6xl font-black text-brand-gold tracking-tighter drop-shadow-lg">IA</span>
+      </div>
+      <h1 class="alchemy-title">Abdelhamid</h1>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+
+    <script>
+      // Système de libération forcée : plus de verrou possible.
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 1000);
+          }
+        }, 3500);
+      });
+
+      window.hideAlchemyLoader = function() {
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 1000);
+        }
+      };
+    </script>
+  </body>
+</html>
